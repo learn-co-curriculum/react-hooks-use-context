@@ -1,6 +1,11 @@
 # React Context
 
-## Overview
+## Learning Goals
+
+- Understand the use cases for React Context and what problems it solves
+- Use `createContext` and the `useContext` hook to work with Context
+
+## Introduction
 
 So far, we've learned that there is only one way to share data across multiple
 components: some parent component is responsible for passing down that data to
@@ -45,8 +50,8 @@ In addition, because of the requirement that we must pass down data from parent
 to child components, we have a couple of components that take in some data via
 props, only to pass it along to a child component. For example, looking at the
 `Profile` component, we can see that it takes in a `theme` prop, even though it
-doesn't use it directly -- it only needs to take this prop in so that it can
-pass it down to the `Interests` component:
+doesn't use it directly &mdash; it only needs to take this prop in so that it
+can pass it down to the `Interests` component:
 
 ```js
 // takes theme as a prop
@@ -61,6 +66,9 @@ function Profile({ user, theme }) {
   );
 }
 ```
+
+This is known as **prop-drilling**, and it can become a burden for deeply-nested
+component hierarchies.
 
 Let's see how to use React Context to solve this problem.
 

@@ -50,7 +50,7 @@ In addition, because of the requirement that we must pass down data from parent
 to child components, we have a couple of components that take in some data via
 props, only to pass it along to a child component. For example, looking at the
 `Profile` component, we can see that it takes in a `theme` prop, even though it
-doesn't use it directly &mdash; it only needs to take this prop in so that it
+doesn't use it directly — it only needs to take this prop in so that it
 can pass it down to the `Interests` component:
 
 ```js
@@ -322,7 +322,7 @@ drilling". However, React recommends using context sparingly:
 > component reuse more difficult.
 >
 > If you only want to avoid passing some props through many levels, component composition is often a simpler solution than context.
-> &mdash; [Before You Use Context](https://reactjs.org/docs/context.html#before-you-use-context)
+> — [Before You Use Context](https://reactjs.org/docs/context.html#before-you-use-context)
 
 Keep this in mind when you're considering adding context to your application.
 Think about whether or not the data that's being held in context is truly

@@ -53,7 +53,7 @@ props, only to pass it along to a child component. For example, looking at the
 doesn't use it directly — it only needs to take this prop in so that it
 can pass it down to the `Interests` component:
 
-```js
+```jsx
 // takes theme as a prop
 function Profile({ user, theme }) {
   if (!user) return <h2>Please Login To View Profile</h2>;
@@ -82,7 +82,7 @@ In order to create our context data, we need to create two things:
 Let's start by creating the context for our `user` data. To organize our context
 code, make a new file called `/src/context/user.js`. Then, create our context:
 
-```js
+```jsx
 // src/context/user.js
 import React from "react";
 
@@ -93,7 +93,7 @@ After creating the context object, we need a special "provider" component that
 will give access to the context data to its child components. Here's how we can set
 up the context provider:
 
-```js
+```jsx
 // src/context/user.js
 import React from "react";
 
@@ -131,7 +131,7 @@ App [theme]
 
 So let's update the `App` component with the `UserProvider`:
 
-```js
+```jsx
 import React, { useState } from "react";
 import Header from "./Header";
 import Profile from "./Profile";
@@ -162,7 +162,7 @@ Next, in order to access the context data from our components, we can use the
 access the `value` of our context provider in any child component. Here's how it
 looks:
 
-```js
+```jsx
 // import the useContext hook
 import React, { useContext } from "react";
 // import the UserContext we created
@@ -189,7 +189,7 @@ You can test this out by updating the `value` prop in our `UserProvider` to
 something different, and see that the `Profile` component has access to the
 updated data:
 
-```js
+```jsx
 function UserProvider({ children }) {
   const currentUser = {
     name: "Duane",
@@ -203,7 +203,7 @@ function UserProvider({ children }) {
 
 Let's hook up the `Header` component to our context as well:
 
-```js
+```jsx
 import React, { useContext } from "react";
 import ThemedButton from "./ThemedButton";
 import DarkModeToggle from "./DarkModeToggle";
@@ -240,7 +240,7 @@ logging in/logging out a user. In the first version of our app, that
 functionality was available to use in the `App` component since we had a `user`
 variable as **state**:
 
-```js
+```jsx
 function App() {
   const [theme, setTheme] = useState("dark");
   const [user, setUser] = useState(null);
@@ -256,7 +256,7 @@ function App() {
 We can re-gain this functionality by setting up the **context** value to be
 stateful instead!
 
-```js
+```jsx
 function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   return (
@@ -280,7 +280,7 @@ well as a setter function. In the `Provider`, we're now using an **object** with
 After this update, we can now use the `setUser` function in our `Header`
 component:
 
-```js
+```jsx
 function Header({ theme, setTheme }) {
   const { user, setUser } = useContext(UserContext);
   function handleLogin() {
@@ -297,7 +297,7 @@ function Header({ theme, setTheme }) {
 We'll also need to update the `Profile` component since our context value has
 changed:
 
-```js
+```jsx
 function Profile({ theme }) {
   const { user } = useContext(UserContext);
   // ...

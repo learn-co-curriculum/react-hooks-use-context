@@ -113,6 +113,8 @@ export { UserContext, UserProvider };
 With our context created, and our provider component all set up, let's see how
 we can use this context data from other components.
 
+Curious about what children is? Review our React Children Lesson for a refresher! **Need hyperlink to related lesson**.
+
 ## Using Context
 
 In order to give our components access to the context data, we must first use
@@ -157,10 +159,12 @@ export default App;
 You'll notice we also removed the `user` prop from these components, since we'll
 be accessing that data via context instead.
 
+We've also included our `Header` and `Profile` components as children of our UserProvider.
+
 Next, in order to access the context data from our components, we can use the
 `useContext` hook. This is another hook that's built into React, and it lets us
 access the `value` of our context provider in any child component. Here's how it
-looks:
+looks when used in our Profile component:
 
 ```jsx
 // import the useContext hook
@@ -254,7 +258,7 @@ function App() {
 ```
 
 We can re-gain this functionality by setting up the **context** value to be
-stateful instead!
+stateful instead! (Remember to import `useState`!)
 
 ```jsx
 function UserProvider({ children }) {

@@ -113,8 +113,9 @@ export { UserContext, UserProvider };
 With our context created, and our provider component all set up, let's see how
 we can use this context data from other components.
 
-Curious about what children are? Review our React Children Lesson for a
-refresher! **Need hyperlink to related lesson**.
+Curious about what children are? Review our
+[React Children Lesson](https://github.com/learn-co-curriculum/react-hooks-children)
+for a refresher!
 
 ## Using Context
 

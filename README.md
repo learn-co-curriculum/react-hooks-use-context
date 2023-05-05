@@ -50,8 +50,8 @@ In addition, because of the requirement that we must pass down data from parent
 to child components, we have a couple of components that take in some data via
 props, only to pass it along to a child component. For example, looking at the
 `Profile` component, we can see that it takes in a `theme` prop, even though it
-doesn't use it directly — it only needs to take this prop in so that it
-can pass it down to the `Interests` component:
+doesn't use it directly — it only needs to take this prop in so that it can pass
+it down to the `Interests` component:
 
 ```jsx
 // takes theme as a prop
@@ -84,18 +84,18 @@ code, make a new file called `/src/context/user.js`. Then, create our context:
 
 ```jsx
 // src/context/user.js
-import React from "react";
+import React from 'react';
 
 const UserContext = React.createContext();
 ```
 
 After creating the context object, we need a special "provider" component that
-will give access to the context data to its child components. Here's how we can set
-up the context provider:
+will give access to the context data to its child components. Here's how we can
+set up the context provider:
 
 ```jsx
 // src/context/user.js
-import React from "react";
+import React from 'react';
 
 // create the context
 const UserContext = React.createContext();
@@ -113,7 +113,8 @@ export { UserContext, UserProvider };
 With our context created, and our provider component all set up, let's see how
 we can use this context data from other components.
 
-Curious about what children are? Review our React Children Lesson for a refresher! **Need hyperlink to related lesson**.
+Curious about what children are? Review our React Children Lesson for a
+refresher! **Need hyperlink to related lesson**.
 
 ## Using Context
 
@@ -134,14 +135,14 @@ App [theme]
 So let's update the `App` component with the `UserProvider`:
 
 ```jsx
-import React, { useState } from "react";
-import Header from "./Header";
-import Profile from "./Profile";
+import React, { useState } from 'react';
+import Header from './Header';
+import Profile from './Profile';
 // import the provider
-import { UserProvider } from "../context/user";
+import { UserProvider } from '../context/user';
 
 function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState('dark');
   return (
     <main className={theme}>
       {/* wrap components that need access to context data in the provider*/}
@@ -159,7 +160,8 @@ export default App;
 You'll notice we also removed the `user` prop from these components, since we'll
 be accessing that data via context instead.
 
-We've also included our `Header` and `Profile` components as children of our UserProvider.
+We've also included our `Header` and `Profile` components as children of our
+UserProvider.
 
 Next, in order to access the context data from our components, we can use the
 `useContext` hook. This is another hook that's built into React, and it lets us
@@ -168,10 +170,10 @@ looks when used in our Profile component:
 
 ```jsx
 // import the useContext hook
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 // import the UserContext we created
-import { UserContext } from "../context/user";
-import Interests from "./Interests";
+import { UserContext } from '../context/user';
+import Interests from './Interests';
 
 function Profile({ theme }) {
   // call useContext with our UserContext
@@ -196,8 +198,8 @@ updated data:
 ```jsx
 function UserProvider({ children }) {
   const currentUser = {
-    name: "Duane",
-    interests: ["Coding", "Biking", "Words ending in 'ing'"],
+    name: 'Duane',
+    interests: ['Coding', 'Biking', "Words ending in 'ing'"],
   };
   return (
     <UserContext.Provider value={currentUser}>{children}</UserContext.Provider>
@@ -208,11 +210,11 @@ function UserProvider({ children }) {
 Let's hook up the `Header` component to our context as well:
 
 ```jsx
-import React, { useContext } from "react";
-import ThemedButton from "./ThemedButton";
-import DarkModeToggle from "./DarkModeToggle";
-import defaultUser from "../data";
-import { UserContext } from "../context/user";
+import React, { useContext } from 'react';
+import ThemedButton from './ThemedButton';
+import DarkModeToggle from './DarkModeToggle';
+import defaultUser from '../data';
+import { UserContext } from '../context/user';
 
 function Header({ theme, setTheme }) {
   const user = useContext(UserContext);
@@ -230,7 +232,7 @@ function Header({ theme, setTheme }) {
       <h1>React Context</h1>
       <nav>
         <ThemedButton onClick={handleLogin} theme={theme}>
-          {user ? "Logout" : "Login"}
+          {user ? 'Logout' : 'Login'}
         </ThemedButton>
         <DarkModeToggle theme={theme} setTheme={setTheme} />
       </nav>
@@ -246,7 +248,7 @@ variable as **state**:
 
 ```jsx
 function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState('dark');
   const [user, setUser] = useState(null);
   return (
     <main className={theme}>
@@ -325,8 +327,9 @@ drilling". However, React recommends using context sparingly:
 > components at different nesting levels. Apply it sparingly because it makes
 > component reuse more difficult.
 >
-> If you only want to avoid passing some props through many levels, component composition is often a simpler solution than context.
-> — [Before You Use Context](https://reactjs.org/docs/context.html#before-you-use-context)
+> If you only want to avoid passing some props through many levels, component
+> composition is often a simpler solution than context. —
+> [Before You Use Context](https://reactjs.org/docs/context.html#before-you-use-context)
 
 Keep this in mind when you're considering adding context to your application.
 Think about whether or not the data that's being held in context is truly
